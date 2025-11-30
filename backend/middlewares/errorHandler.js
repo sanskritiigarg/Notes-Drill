@@ -12,12 +12,14 @@ const errorHandler = (err, req, res, next) => {
   if (err.code === 11000) {
     const field = Object.keys(err.keyValue)[0];
     message = `${field} already exists`;
-    statusCode = 400
+    statusCode = 400;
   }
 
   // Mongoose validation error
   if (err.name === 'ValidationError') {
-    message = Object.values(err.errors).map(val => val.message).join(', ');
+    message = Object.values(err.errors)
+      .map((val) => val.message)
+      .join(', ');
     statusCode = 400;
   }
 
@@ -40,16 +42,15 @@ const errorHandler = (err, req, res, next) => {
 
   console.error('Error:', {
     message: err.message,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   });
 
   res.status(statusCode).json({
     success: false,
     error: message,
     statusCode,
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
   });
-  
-}
+};
 
 export default errorHandler;
