@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Urbanist', sans-serif;
+  --color-primary: #ff9324;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-display);
+  }
+
+  body {
+    background-color: #fcfcfc;
+  }
+}
