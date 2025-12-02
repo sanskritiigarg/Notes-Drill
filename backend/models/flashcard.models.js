@@ -3,16 +3,16 @@ import mongoose from 'mongoose';
 const cardSchema = new mongoose.Schema({
   question: {
     type: String,
-    required: true
+    required: true,
   },
   answer: {
     type: String,
-    required: true
+    required: true,
   },
   difficulty: {
     type: String,
     enum: ['easy', 'medium', 'hard'],
-    default: 'medium'
+    default: 'medium',
   },
   lastReviewed: {
     type: Date,
@@ -24,25 +24,28 @@ const cardSchema = new mongoose.Schema({
   },
   isStarred: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-const flashcardSchema = new mongoose.Schema({
-  userId: {
+const flashcardSchema = new mongoose.Schema(
+  {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true
+      required: true,
     },
     documentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Document',
-      required: true
+      required: true,
     },
     cards: [cardSchema],
-}, {timestamps: true});
+  },
+  { timestamps: true }
+);
 
-flashcardSchema.index({userId: 1, documentId: 1});
+flashcardSchema.index({ userId: 1, documentId: 1 });
 
 const Flashcard = mongoose.model('Flashcard', flashcardSchema);
 export default Flashcard;

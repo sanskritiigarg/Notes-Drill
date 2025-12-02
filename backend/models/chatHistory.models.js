@@ -1,40 +1,46 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const messageSchema = new mongoose.Schema({
-  role: {
-    type: String,
-    enum: ['user', 'assistant'],
-    required: true
+const messageSchema = new mongoose.Schema(
+  {
+    role: {
+      type: String,
+      enum: ['user', 'assistant'],
+      required: true,
+    },
+    content: {
+      type: String,
+      required: true,
+    },
+    timestamp: {
+      type: date,
+      default: Date.now,
+    },
+    relevantChunks: {
+      type: [Number],
+      default: [],
+    },
   },
-  content: {
-    type: String,
-    required: true
-  },
-  timestamp: {
-    type: date,
-    default: Date.now
-  },
-  relevantChunks: {
-    type: [Number],
-    default: []
-  }
-}, {timestamps: true});
+  { timestamps: true }
+);
 
-const chatHistorySchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+const chatHistorySchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    documentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Document',
+      required: true,
+    },
+    messages: [messageSchema],
   },
-  documentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Document',
-    required: true
-  },
-  messages: [messageSchema]
-}, {timestamps: true});
+  { timestamps: true }
+);
 
-chatHistorySchema.index({userId: 1, documentId: 1});
+chatHistorySchema.index({ userId: 1, documentId: 1 });
 
 const ChatHistory = mongoose.model('ChatHistory', chatHistorySchema);
 export default ChatHistory;

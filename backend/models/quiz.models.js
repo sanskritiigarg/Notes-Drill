@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const questionSchema = new mongoose.Schema({
   question: {
@@ -8,7 +8,7 @@ const questionSchema = new mongoose.Schema({
   options: {
     type: [String],
     required: true,
-    validate: [array => array.length === 4, 'Must have exactly 4 options']
+    validate: [(array) => array.length === 4, 'Must have exactly 4 options'],
   },
   correctAnswer: {
     type: String,
@@ -16,68 +16,71 @@ const questionSchema = new mongoose.Schema({
   },
   explanation: {
     type: String,
-    default: ''
+    default: '',
   },
   difficulty: {
     type: String,
     enum: ['easy', 'medium', 'hard'],
-    default: 'medium'
-  }
+    default: 'medium',
+  },
 });
 
 const answersSchema = new mongoose.Schema({
   questionsIndex: {
     type: Number,
-    required: true
+    required: true,
   },
   selectedAnswer: {
     type: String,
-    required: true
+    required: true,
   },
   isCorrect: {
     type: Boolean,
-    required: true
+    required: true,
   },
   answeredAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-const quizSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+const quizSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    documentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Document',
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    questions: [questionSchema],
+    userAnswers: [answersSchema],
+    score: {
+      type: Number,
+      default: 0,
+    },
+    totalQuestions: {
+      type: Number,
+      required: true,
+    },
+    completedAt: {
+      type: Date,
+      default: null,
+    },
   },
-  documentId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Document',
-    required: true
-  },
-  title: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  questions: [questionSchema],
-  userAnswers: [answersSchema],
-  score: {
-    type: Number,
-    default: 0
-  },
-  totalQuestions: {
-    type: Number,
-    required: true
-  },
-  completedAt: {
-    type: Date,
-    default: null
-  }
-}, {timestamps: true});
+  { timestamps: true }
+);
 
 // index for faster queries
-quizSchema.index({userId: 1, documentId: 1});
+quizSchema.index({ userId: 1, documentId: 1 });
 
 const Quiz = mongoose.model('Quiz', quizSchema);
 export default Quiz;
