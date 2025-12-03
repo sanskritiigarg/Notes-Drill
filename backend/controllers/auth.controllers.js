@@ -10,16 +10,17 @@ const generateToken = (id) => {
 
 const register = async (req, res, next) => {
   try {
-    const {username, email, password} = req.body;
+    const { username, email, password } = req.body;
 
-    const existingUser = await User.findOne({$or: [{email}, {username}]});
+    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
 
     if (existingUser) {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        error: existingUser.email === email ? "Email is already registered" : "Username already taken"
-      })
+        error:
+          existingUser.email === email ? 'Email is already registered' : 'Username already taken',
+      });
     }
 
     const user = await User.create({
@@ -28,7 +29,7 @@ const register = async (req, res, next) => {
       password,
     });
 
-    const token  = generateToken(user._id);
+    const token = generateToken(user._id);
 
     res.status(201).json({
       succes: true,
@@ -39,13 +40,12 @@ const register = async (req, res, next) => {
           username: user.username,
           email: user.email,
           profileImage: user.profileImage,
-          createdAt: user.createdAt
+          createdAt: user.createdAt,
         },
-        token
+        token,
       },
-      message: "User registered successfully"
-    })
-
+      message: 'User registered successfully',
+    });
   } catch (error) {
     next(error);
   }
@@ -53,23 +53,23 @@ const register = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const {email, password} = req.body;
+    const { email, password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({
         succes: false,
         statusCode: 400,
-        message: "Please provide email and password"
+        message: 'Please provide email and password',
       });
     }
 
-    const user = await User.findOne({email}).select('+password');
+    const user = await User.findOne({ email }).select('+password');
 
     if (!user) {
       return res.status(404).json({
         succes: false,
         statusCode: 404,
-        message: "User Not found"
+        message: 'User Not found',
       });
     }
 
@@ -79,26 +79,26 @@ const login = async (req, res, next) => {
       return res.status(400).json({
         succes: false,
         statusCode: 400,
-        message: "Invalid credentials"
+        message: 'Invalid credentials',
       });
     }
 
-    const token = generateToken(user._id);    
+    const token = generateToken(user._id);
 
     res.status(200).json({
       success: true,
       statusCode: 200,
-      message: "Login successful",
+      message: 'Login successful',
       data: {
         user: {
           id: user._id,
           email: user.email,
           username: user.username,
-          profileImage: user.profileImage
+          profileImage: user.profileImage,
         },
-        token
-      }
-    })
+        token,
+      },
+    });
   } catch (error) {
     next(error);
   }
@@ -113,8 +113,8 @@ const getProfile = async (req, res, next) => {
     res.status(200).json({
       success: true,
       statusCode: 200,
-      message: "User found",
-      data: {user}
+      message: 'User found',
+      data: { user },
     });
   } catch (error) {
     next(error);
@@ -123,7 +123,7 @@ const getProfile = async (req, res, next) => {
 
 const updateProfile = async (req, res, next) => {
   try {
-    const {email, username, profileImage} = req.body;
+    const { email, username, profileImage } = req.body;
 
     const user = await User.findById(req.user._id);
 
@@ -136,8 +136,8 @@ const updateProfile = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       statusCode: 200,
-      message: "Profile Updated successfully",
-      data: {user}
+      message: 'Profile Updated successfully',
+      data: { user },
     });
   } catch (error) {
     next(error);
@@ -146,14 +146,14 @@ const updateProfile = async (req, res, next) => {
 
 const changePassword = async (req, res, next) => {
   try {
-    const {newPassword, currPassword} = req.body;
+    const { newPassword, currPassword } = req.body;
 
     if (!currPassword || !newPassword) {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: "Please provide new and current passwords"
-      })
+        message: 'Please provide new and current passwords',
+      });
     }
 
     const user = await User.findOne(req.user._id).select('+password');
@@ -164,8 +164,8 @@ const changePassword = async (req, res, next) => {
       return res.status(401).json({
         success: false,
         statusCode: 401,
-        message: "Provide correct password"
-      })
+        message: 'Provide correct password',
+      });
     }
 
     user.password = newPassword;
@@ -174,8 +174,8 @@ const changePassword = async (req, res, next) => {
     res.status(200).json({
       success: true,
       statusCode: 200,
-      message: "Password changed successfully"
-    })
+      message: 'Password changed successfully',
+    });
   } catch (error) {
     next(error);
   }

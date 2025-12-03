@@ -15,7 +15,7 @@ const protect = async (req, res, next) => {
         return res.status(401).json({
           success: false,
           statusCode: 401,
-          message: "User Not Found"
+          message: 'User Not Found',
         });
       }
 
@@ -27,14 +27,14 @@ const protect = async (req, res, next) => {
         return res.status(401).json({
           success: false,
           statusCode: 401,
-          message: "Token has Expired"
+          message: 'Token has Expired',
         });
       }
-      
+
       return res.status(401).json({
         success: false,
         statusCode: 401,
-        message: "not authorized, token failed"
+        message: 'not authorized, token failed',
       });
     }
   }
@@ -43,9 +43,9 @@ const protect = async (req, res, next) => {
     res.status(401).json({
       success: false,
       statusCode: 401,
-      message: "not authorized, No token"
+      message: 'not authorized, No token',
     });
   }
-}
+};
 
 export default protect;
