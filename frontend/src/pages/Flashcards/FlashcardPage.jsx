@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function FlashcardPage() {
   return <div>FlashcardPage</div>;
