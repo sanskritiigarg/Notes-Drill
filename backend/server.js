@@ -34,6 +34,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
+import authRouter from './routes/auth.routes.js';
+
+app.use('/api/users', authRouter);
 
 app.use(errorHandler);
 
