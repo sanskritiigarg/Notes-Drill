@@ -32,7 +32,7 @@ const register = async (req, res, next) => {
     const token = generateToken(user._id);
 
     res.status(201).json({
-      succes: true,
+      success: true,
       statusCode: 201,
       data: {
         user: {
@@ -57,7 +57,7 @@ const login = async (req, res, next) => {
 
     if (!email || !password) {
       return res.status(400).json({
-        succes: false,
+        success: false,
         statusCode: 400,
         message: 'Please provide email and password',
       });
@@ -67,7 +67,7 @@ const login = async (req, res, next) => {
 
     if (!user) {
       return res.status(404).json({
-        succes: false,
+        success: false,
         statusCode: 404,
         message: 'User Not found',
       });
@@ -77,7 +77,7 @@ const login = async (req, res, next) => {
 
     if (!isMatch) {
       return res.status(400).json({
-        succes: false,
+        success: false,
         statusCode: 400,
         message: 'Invalid credentials',
       });
