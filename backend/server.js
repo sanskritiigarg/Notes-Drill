@@ -35,8 +35,10 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 import authRouter from './routes/auth.routes.js';
+import documentRoutes from './routes/document.routes.js';
 
 app.use('/api/users', authRouter);
+app.use('/api/documents', documentRoutes);
 
 app.use(errorHandler);
 
