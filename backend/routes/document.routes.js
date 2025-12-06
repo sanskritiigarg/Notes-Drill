@@ -14,19 +14,19 @@ const router = express.Router();
 router.use(protect);
 
 // @desc Upload a new document
-// @route /api/documents/upload
+// @route POST /api/documents/upload
 router.post('/upload', upload.single('file'), uploadDocument);
 
 // @desc Get all the user's documents
-// @route /api/documents/
+// @route GET /api/documents/
 router.get('/', getDocuments);
 
 // @desc Get a user's document
-// @route /api/documents/:id
+// @route GET /api/documents/:id
 router.get('/:id', getDocument);
 
 // @desc Delete a document
-// @route /api/documents/:id
+// @route DELETE /api/documents/:id
 router.delete('/:id', deleteDocument);
 
 export default router;

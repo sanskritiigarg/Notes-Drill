@@ -13,27 +13,27 @@ const router = express.Router();
 
 // @access Public
 // @desc Register new user
-// @route /api/users/register
+// @route POST /api/users/register
 router.post('/register', registerValidation, register);
 
 // @access Public
 // @desc Login user
-// @route /api/users/login
+// @route POST /api/users/login
 router.post('/login', loginValidation, login);
 
 // @access Private
 // @desc Get user profile
-// @route /api/users/profile
+// @route GET /api/users/profile
 router.get('/profile', protect, getProfile);
 
 // @access Private
 // @desc Update user profile
-// @route /api/users/profile
+// @route PUT /api/users/profile
 router.put('/profile', protect, updateProfile);
 
 // @access Private
 // @desc Change user password
-// @route /api/users/change-password
+// @route PUT /api/users/change-password
 router.put('/change-password', protect, changePassword);
 
 export default router;
