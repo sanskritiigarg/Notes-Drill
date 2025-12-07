@@ -12,7 +12,7 @@ const processPDF = async (documentId, filePath) => {
 
     const chunks = chunkText(text, 500, 50);
 
-    const document = await Document.findByIdAndUpdate(documentId, {
+    await Document.findByIdAndUpdate(documentId, {
       extractedText: text,
       chunks: chunks,
       status: 'ready',
@@ -142,7 +142,7 @@ const getDocument = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Document Not Found',
+        error: 'Document Not Found',
       });
     }
 
@@ -180,7 +180,7 @@ const deleteDocument = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Document Not Found',
+        error: 'Document Not Found',
       });
     }
 

@@ -59,7 +59,7 @@ const login = async (req, res, next) => {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: 'Please provide email and password',
+        error: 'Please provide email and password',
       });
     }
 
@@ -69,7 +69,7 @@ const login = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'User Not found',
+        error: 'User Not found',
       });
     }
 
@@ -79,7 +79,7 @@ const login = async (req, res, next) => {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: 'Invalid credentials',
+        error: 'Invalid credentials',
       });
     }
 
@@ -152,7 +152,7 @@ const changePassword = async (req, res, next) => {
       return res.status(400).json({
         success: false,
         statusCode: 400,
-        message: 'Please provide new and current passwords',
+        error: 'Please provide new and current passwords',
       });
     }
 
@@ -164,7 +164,7 @@ const changePassword = async (req, res, next) => {
       return res.status(401).json({
         success: false,
         statusCode: 401,
-        message: 'Provide correct password',
+        error: 'Provide correct password',
       });
     }
 

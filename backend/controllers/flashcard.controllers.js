@@ -50,7 +50,7 @@ const reviewFlashcards = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Flashcard set or card Not Found',
+        error: 'Flashcard set or card Not Found',
       });
     }
 
@@ -62,7 +62,7 @@ const reviewFlashcards = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Card Not Found in set',
+        error: 'Card Not Found in set',
       });
     }
 
@@ -93,7 +93,7 @@ const toggleStarFlashcards = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Flashcard Set or Card Not Found',
+        error: 'Flashcard Set or Card Not Found',
       });
     }
 
@@ -105,7 +105,7 @@ const toggleStarFlashcards = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'Card Not Found in set',
+        error: 'Card Not Found in set',
       });
     }
 
@@ -132,7 +132,7 @@ const deleteFlashcardSet = async (req, res, next) => {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        message: 'FlashcardSet  Not Found',
+        error: 'FlashcardSet Not Found',
       });
     }
 
