@@ -6,7 +6,7 @@ const getFlashcards = async (req, res, next) => {
       userId: req.user._id,
       documentId: req.params.documentId,
     })
-      .populate('document', 'title fileName')
+      .populate('documentId', 'title fileName')
       .sort({ createdAt: -1 });
 
     res.status(200).json({
@@ -25,7 +25,7 @@ const getAllFlashcards = async (req, res, next) => {
     const flashcards = await Flashcard.find({
       userId: req.user._id,
     })
-      .populate('document', 'title fileName')
+      .populate('documentId', 'title fileName')
       .sort({ createdAt: -1 });
 
     res.status(200).json({
