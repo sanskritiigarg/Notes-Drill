@@ -139,12 +139,11 @@ export const findRelevantChunks = (chunks, query, maxChunks = 3) => {
       content: chunk.content,
       chunkIndex: chunk.chunkIndex,
       pageNumber: chunk,
-      pageNumber,
       _id: chunk._id,
     }));
   }
 
-  const scroredChunks = chunks.map((chunk, index) => {
+  const scoredChunks = chunks.map((chunk, index) => {
     const content = chunk.content.toLowerCase();
     const contentWords = content.split(/\s+/).length;
     let score = 0;
@@ -161,18 +160,18 @@ export const findRelevantChunks = (chunks, query, maxChunks = 3) => {
     }
 
     // Bonus: Multiple query words found
-    const uniqueWords = queryWords.filte((word) => content.includes(word)).length;
+    const uniqueWords = queryWords.filter((word) => content.includes(word)).length;
     if (uniqueWords > 1) {
       score += uniqueWords * 2;
     }
 
     // Normalize by content length(Relevance per unit length)
-    const normalizedScore = score / Math.sqr(contentWords);
+    const normalizedScore = score / Math.sqrt(contentWords);
 
     // Small bonus for earlier chunks
-    const positionBonus = 1 - (index / chunkslength) * 0.1;
+    const positionBonus = 1 - (index / chunks.length) * 0.1;
 
-    // Return clean object without Mongoosemetadata
+    // Return clean object without Mongoose metadata
     return {
       content: chunk.content,
       chunkIndex: chunk.chunkIndex,
@@ -184,8 +183,8 @@ export const findRelevantChunks = (chunks, query, maxChunks = 3) => {
     };
   });
 
-  return scroredChunks
-    .filter((chunk) => chunk.score > 0)
+  return scoredChunks
+    .filter((chunk) => chunk.score > 0 || chunk.rawScore > 0)
     .sort((a, b) => {
       if (b.score !== a.score) {
         return b.score - a.score;
@@ -193,7 +192,6 @@ export const findRelevantChunks = (chunks, query, maxChunks = 3) => {
       if (b.matchedWords !== a.matchedWords) {
         return b.matchedWords - a.matchedWords;
       }
-
       return a.chunkIndex - b.chunkIndex;
     })
     .slice(0, maxChunks);

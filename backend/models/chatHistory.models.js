@@ -13,15 +13,13 @@ const messageSchema = new mongoose.Schema(
     },
     timestamp: {
       type: Date,
-      default: Date.now,
+      default: Date.now(),
     },
     relevantChunks: {
       type: [Number],
       default: [],
     },
-  },
-  { timestamps: true }
-);
+  });
 
 const chatHistorySchema = new mongoose.Schema(
   {
