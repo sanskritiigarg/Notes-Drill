@@ -225,7 +225,7 @@ const chat = async (req, res, next) => {
 
 const explainConcept = async (req, res, next) => {
   try {
-    const {documentId, concept} = req.body;
+    const { documentId, concept } = req.body;
 
     if (!documentId || !concept) {
       return res.status(400).json({
@@ -238,14 +238,14 @@ const explainConcept = async (req, res, next) => {
     const document = await Document.findOne({
       userId: req.user._id,
       _id: documentId,
-      status: 'ready'
+      status: 'ready',
     });
 
     if (!document) {
       return res.status(404).json({
         success: false,
         statusCode: 404,
-        error: 'Document Not Found'
+        error: 'Document Not Found',
       });
     }
 
@@ -259,10 +259,10 @@ const explainConcept = async (req, res, next) => {
       data: {
         concept,
         explanation,
-        relevantChunks: relevantChunks.map(c => c.chunkIndex)
+        relevantChunks: relevantChunks.map((c) => c.chunkIndex),
       },
-      message: 'Explanation generated successfully'
-    })
+      message: 'Explanation generated successfully',
+    });
   } catch (error) {
     next(error);
   }
@@ -270,7 +270,7 @@ const explainConcept = async (req, res, next) => {
 
 const getChatHistory = async (req, res, next) => {
   try {
-    const {documentId} = req.params;
+    const { documentId } = req.params;
 
     if (!documentId) {
       return res.status(400).json({
@@ -282,7 +282,7 @@ const getChatHistory = async (req, res, next) => {
 
     const chatHistory = await ChatHistory.findOne({
       userId: req.user._id,
-      documentId: documentId
+      documentId: documentId,
     });
 
     if (!chatHistory) {
@@ -290,7 +290,7 @@ const getChatHistory = async (req, res, next) => {
         success: true,
         statusCode: 200,
         data: [],
-        message: 'No chat history found for this document'
+        message: 'No chat history found for this document',
       });
     }
 
@@ -298,7 +298,7 @@ const getChatHistory = async (req, res, next) => {
       success: true,
       statusCode: 200,
       data: chatHistory.messages,
-      message: 'Chat history retrieved successfully'
+      message: 'Chat history retrieved successfully',
     });
   } catch (error) {
     next(error);
