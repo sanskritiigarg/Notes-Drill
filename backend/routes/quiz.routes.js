@@ -1,6 +1,12 @@
 import express from 'express';
 import protect from '../middlewares/auth.middlewares.js';
-import { deleteQuiz, getQuizById, getQuizResults, getQuizzes, submitQuiz } from '../controllers/quiz.controllers.js';
+import {
+  deleteQuiz,
+  getQuizById,
+  getQuizResults,
+  getQuizzes,
+  submitQuiz,
+} from '../controllers/quiz.controllers.js';
 
 const router = express.Router();
 
