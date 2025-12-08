@@ -26,7 +26,7 @@ const questionSchema = new mongoose.Schema({
 });
 
 const answersSchema = new mongoose.Schema({
-  questionsIndex: {
+  questionIndex: {
     type: Number,
     required: true,
   },

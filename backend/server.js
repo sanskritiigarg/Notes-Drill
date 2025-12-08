@@ -38,11 +38,13 @@ import authRoutes from './routes/auth.routes.js';
 import documentRoutes from './routes/document.routes.js';
 import flashcardRoutes from './routes/flashcard.routes.js';
 import aiRoutes from './routes/ai.routes.js';
+import quizRoutes from './routes/quiz.routes.js';
 
 app.use('/api/users', authRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/flashcards', flashcardRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/quizzes', quizRoutes);
 
 app.use(errorHandler);
 
