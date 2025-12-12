@@ -15,7 +15,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute.jsx';
 import { useAuth } from './context/AuthContext.jsx';
 
 function App() {
-  const {isAuthenticated, loading}  = useAuth();
+  const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
     return (
