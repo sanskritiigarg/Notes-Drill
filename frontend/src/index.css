@@ -2,7 +2,11 @@
 
 @theme {
   --font-display: 'Urbanist', sans-serif;
-  --color-primary: #ff9324;
+  --color-primary: #0a587f;
+  --color-secondary: #065084;
+  --color-accent: #0f828c;
+  --color-light: #78b9b5;
+  --color-foreground: #f0f5f5;
 }
 
 @layer base {
@@ -11,6 +15,12 @@
   }
 
   body {
-    background-color: #fcfcfc;
+    background-color: #151414;
+  }
+
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px rgb(from var(--color-primary) r g b / 0.4) inset !important;
+    -webkit-text-fill-color: var(--color-foreground) !important;
+    transition: background-color 9999s ease-in-out 0s;
   }
 }
