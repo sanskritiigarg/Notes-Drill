@@ -10,7 +10,7 @@ const login = async (email, password) => {
 
     return response.data;
   } catch (error) {
-    throw error.response?.data || { message: 'An unknown error occurred' };
+    throw error.data || { error: 'An unknown error occurred' };
   }
 };
 
@@ -24,7 +24,7 @@ const register = async (username, email, password) => {
 
     return response.data;
   } catch (error) {
-    throw error.response?.data || { message: 'An unknown error occurred' };
+    throw error.data || { error: 'An unknown error occurred' };
   }
 };
 
