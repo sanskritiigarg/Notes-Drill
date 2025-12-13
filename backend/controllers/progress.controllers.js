@@ -33,13 +33,13 @@ export const getDashboard = async (req, res, next) => {
     const recentDocuments = await Document.find({ userId })
       .sort({ lastAccessed: -1 })
       .limit(5)
-      .select('title score totalQuestion completeAt');
+      .select('title lastAccessed createdAt');
 
     const recentQuizzes = await Quiz.find({ userId })
       .sort({ createdAt: -1 })
       .limit(5)
       .populate('documentId', 'title')
-      .select('title score totalQuestions completedAt');
+      .select('title score totalQuestions completedAt createdAt');
 
     res.status(200).json({
       success: true,
@@ -60,7 +60,7 @@ export const getDashboard = async (req, res, next) => {
           averageScore,
         },
         recentActivity: {
-          document: recentDocuments,
+          documents: recentDocuments,
           quizzes: recentQuizzes,
         },
       },

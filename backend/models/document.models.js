@@ -44,9 +44,8 @@ const documentSchema = new mongoose.Schema(
       default: '',
     },
     chunks: [chunkSchema],
-    uploaddate: {
+    lastAccessed: {
       type: Date,
-      default: Date.now,
     },
     status: {
       type: String,
@@ -57,7 +56,7 @@ const documentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-documentSchema.index({ userId: 1, uploadDate: -1 });
+documentSchema.index({ userId: 1, createdAt: -1 });
 
 const Document = mongoose.model('Document', documentSchema);
 export default Document;
