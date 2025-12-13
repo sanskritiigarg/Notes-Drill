@@ -29,7 +29,7 @@ const DashboardPage = () => {
 
   if (!dashboardData || !dashboardData.overview) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-secondary via-accent to-light flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-secondary via-accent to-light flex items-center justify-center">
         <div className="text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl ">
             <TrendingUp className="w-8 h-8 " />
@@ -62,7 +62,7 @@ const DashboardPage = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen py-4">
       <div className="absolute inset-0 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto">
@@ -78,7 +78,7 @@ const DashboardPage = () => {
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="group relative border hover:shadow-primary rounded-2xl shadow-md shadow-primary p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            className="group relative border hover:shadow-primary rounded-2xl shadow-md shadow-primary p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 bg-gray-900 backdrop-blur-3xl"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-semibold uppercase tracking-wide">{stat.label}</span>
@@ -127,7 +127,7 @@ const DashboardPage = () => {
               .map((activity, index) => (
                 <div
                   key={activity.id || index}
-                  className="group flex items-center justify-between p-4 rounded-xl border hover:shadow-secondary hover:shadow-md transition-all duration-200 mb-2"
+                  className="group flex items-center justify-between p-4 rounded-xl border hover:shadow-secondary hover:shadow-md transition-all duration-200 mb-2 bg-gray-900 backdrop-blur-3xl"
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
