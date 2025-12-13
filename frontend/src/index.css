@@ -16,6 +16,7 @@
 
   body {
     background-color: #151414;
+    color: var(--color-foreground);
   }
 
   input:-webkit-autofill {

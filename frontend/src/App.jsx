@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LoginPage from './pages/auth/LoginPage.jsx';
 import RegisterPage from './pages/auth/RegisterPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
-import AppLayout from './components/layout/AppLayout.jsx';
 import DashboardPage from './pages/Dashboard/DashboardPage.jsx';
 import DocumentDetailPage from './pages/Documents/DocListPage.jsx';
 import DocumentListPage from './pages/Documents/DocListPage.jsx';
@@ -48,9 +47,9 @@ function App() {
           <Route path="/documents/:id" element={<DocumentDetailPage />} />
           <Route path="/flashcards" element={<FlashcardsListPage />} />
           <Route path="/documents/:id/flashcards" element={<FlashcardPage />} />
-          <Route path="/quizzes/:quizzId" element={<QuizTakePage />} />
-          <Route path="/quizzes/:quizId" element={<QuizResultPage />} />
-          <Route path="/quizzes/:quizId/results" element={<ProfilePage />} />
+          <Route path="/quizzes/:quizId" element={<QuizTakePage />} />
+          <Route path="/quizzes/:quizId/result" element={<QuizResultPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
