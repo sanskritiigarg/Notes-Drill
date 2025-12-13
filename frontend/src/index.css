@@ -19,6 +19,24 @@
     color: var(--color-foreground);
   }
 
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #151414;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-light);
+    border-radius: 5px;
+    border: 1px solid #151414;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px rgb(from var(--color-primary) r g b / 0.4) inset !important;
     -webkit-text-fill-color: var(--color-foreground) !important;
