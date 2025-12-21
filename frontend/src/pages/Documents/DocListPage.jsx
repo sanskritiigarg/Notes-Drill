@@ -20,11 +20,14 @@ const DocListPage = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState(null);
+  const hasFetched = React.useRef(false);
 
   const fetchDocuments = async () => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     try {
       const fetchedData = await documentServices.getDocuments();
-
       setDocuments(fetchedData.data);
     } catch (error) {
       toast.error('Failed to fetch documents');
@@ -96,13 +99,19 @@ const DocListPage = () => {
     }
   };
 
+  const closeDialog = () => {
+    setIsUploadModalOpen(false);
+    setUploadTitle('');
+    setUploadFile(null);
+  };
+
   const renderUploadDialog = () => {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm">
         <div className="relative w-full max-w-lg border-2 rounded-2xl shadow-2xl bg-black p-8">
           {/* Close Button */}
           <button
-            onClick={() => setIsUploadModalOpen(false)}
+            onClick={closeDialog}
             className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-lg hover:bg-accent/60 transition-all"
           >
             <X className="w-4 h-4" strokeWidth={2} />
@@ -158,7 +167,7 @@ const DocListPage = () => {
               <button
                 type="button"
                 disabled={uploading}
-                onClick={() => setIsUploadModalOpen(false)}
+                onClick={closeDialog}
                 className="flex-1 h-11 border-2 rounded-xl font-semibold hover:bg-red-400 transition-all duration-200"
               >
                 Cancel

@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import Spinner from '../../components/common/Spinner';
 import progressService from '../../services/progress.service.js';
 import toast from 'react-hot-toast';
@@ -7,8 +8,12 @@ import { useEffect, useState } from 'react';
 const DashboardPage = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const hasFetched = React.useRef(false);
 
   useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     const fetchDashboard = async () => {
       try {
         const fetchedData = await progressService.getDashboard();
