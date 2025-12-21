@@ -96,7 +96,7 @@ const DashboardPage = () => {
       {/* Recent Activity Section */}
       <div>
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-linear-to-br from-primary to-secondary flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-linear-to-br from-secondary to-accent flex items-center justify-center">
             <Clock strokeWidth={2} className="w-5 h-5" />
           </div>
           <h3 className="text-2xl font-medium tracking-tight">Recent Activity</h3>

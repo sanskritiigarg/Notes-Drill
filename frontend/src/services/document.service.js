@@ -11,6 +11,8 @@ const upload = async (formData) => {
 
     return response.data;
   } catch (error) {
+    console.error(error);
+    
     throw error.response?.data || { message: 'Failed to upload document' };
   }
 };

@@ -3,7 +3,7 @@ import LoginPage from './pages/auth/LoginPage.jsx';
 import RegisterPage from './pages/auth/RegisterPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import DashboardPage from './pages/Dashboard/DashboardPage.jsx';
-import DocumentDetailPage from './pages/Documents/DocListPage.jsx';
+import DocumentDetailPage from './pages/Documents/DocDetailPage.jsx';
 import DocumentListPage from './pages/Documents/DocListPage.jsx';
 import ProfilePage from './pages/Profile/ProfilePage.jsx';
 import FlashcardPage from './pages/Flashcards/FlashcardPage.jsx';
