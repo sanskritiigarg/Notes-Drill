@@ -41,7 +41,7 @@ const generateSummary = async (documentId) => {
 
 const chat = async (documentId, question) => {
   try {
-    const response = await axiosInstance.post(API_PATHS.AI.GENERATE_FLASHCARDS, {
+    const response = await axiosInstance.post(API_PATHS.AI.CHAT, {
       documentId,
       question,
     });
@@ -54,7 +54,7 @@ const chat = async (documentId, question) => {
 
 const explainConcept = async (documentId, concept) => {
   try {
-    const response = await axiosInstance.post(API_PATHS.AI.GENERATE_FLASHCARDS, {
+    const response = await axiosInstance.post(API_PATHS.AI.EXPLAIN_CONCEPT, {
       documentId,
       concept,
     });
