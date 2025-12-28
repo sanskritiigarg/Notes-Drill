@@ -5,6 +5,7 @@ import fs from 'fs/promises';
 import mongoose from 'mongoose';
 import { extractTextFromPdf } from '../utils/pdfParser.js';
 import { chunkText } from '../utils/textChunker.js';
+import { deleteFile, upload } from './upload.controllers.js';
 
 const processPDF = async (documentId, filePath) => {
   try {
@@ -25,6 +26,8 @@ const processPDF = async (documentId, filePath) => {
     await Document.findByIdAndUpdate(documentId, {
       status: 'failed',
     });
+  } finally {
+    await fs.unlink(filePath).catch(() => {});
   }
 };
 
@@ -49,16 +52,15 @@ const uploadDocument = async (req, res, next) => {
       });
     }
 
-    // Construct the URL for the uploaded file
-    const baseURL = `https://localhost:${process.env.PORT || 8000}`;
-    const fileURL = `${baseURL}/uploads/documents/${req.file.filename}`;
+    const file = await upload(req.file.path);
 
     // Create document record
     const document = await Document.create({
       userId: req.user._id,
       title,
       fileName: req.file.originalname,
-      filePath: fileURL,
+      filePath: file.url,
+      fileId: file.fileId,
       fileSize: req.file.size,
       status: 'processing',
     });
@@ -184,8 +186,10 @@ const deleteDocument = async (req, res, next) => {
       });
     }
 
-    // Delete file from filesystem
-    fs.unlink(document.filePath).catch(() => {});
+    // Delete file from cloud
+    if (document.fileId) {
+      await deleteFile(document.fileId);
+    }
 
     // Delete file from database
     await document.deleteOne();
