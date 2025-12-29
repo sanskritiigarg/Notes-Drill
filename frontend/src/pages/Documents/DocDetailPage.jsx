@@ -7,6 +7,7 @@ import documentServices from '../../services/document.service.js';
 import PageHeader from '../../components/documents/PageHeader.jsx';
 import Tabs from '../../components/documents/Tabs.jsx';
 import ChatInterface from '../../components/tabs/ChatInterface.jsx';
+import AIActions from '../../components/tabs/AIActions.jsx';
 
 function DocDetailPage() {
   const { id } = useParams();
@@ -91,7 +92,7 @@ function DocDetailPage() {
   };
 
   const renderAIActions = () => {
-    return 'renderAIActions';
+    return <AIActions />;
   };
 
   const renderFlashcards = () => {
