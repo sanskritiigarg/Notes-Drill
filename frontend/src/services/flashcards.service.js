@@ -13,11 +13,13 @@ const getAllFlashcards = async () => {
 
 const getFlashcards = async (documentId) => {
   try {
-    const response = await axiosInstance.get(API_PATHS.FLASHCARDS.GET_ALL_FOR_USER(documentId));
+    const response = await axiosInstance.get(API_PATHS.FLASHCARDS.GET_ALL_FOR_DOC(documentId));
 
     return response.data;
   } catch (error) {
-    throw error.response?.data || { message: 'Failed to fetch flashcards' };
+    console.log(error);
+
+    throw error.response?.data?.error || { message: 'Failed to fetch flashcards' };
   }
 };
 
@@ -43,11 +45,13 @@ const starFlashcard = async (cardId) => {
 
 const deleteFlashcard = async (id) => {
   try {
-    const response = await axiosInstance.delete(API_PATHS.FLASHCARDS.STAR_FLASHCARD(id));
+    const response = await axiosInstance.delete(API_PATHS.FLASHCARDS.DELETE(id));
 
     return response.data;
   } catch (error) {
-    throw error.response?.data || { message: 'Failed to star flashcard' };
+    console.log(error);
+
+    throw error.response?.data?.error || { message: 'Failed to delete flashcard' };
   }
 };
 
@@ -58,3 +62,5 @@ const flashcardService = {
   starFlashcard,
   deleteFlashcard,
 };
+
+export default flashcardService;
