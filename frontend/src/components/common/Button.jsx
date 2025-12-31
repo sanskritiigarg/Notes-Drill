@@ -14,9 +14,9 @@ const Button = ({
 
   const variantStyles = {
     primary:
-      'bg-linear-to-r  from-primary to-accent shadow-md shadow-secondary hover:from-secondary hover:to-primary hover:shadow-lg',
-    secondary: 'bg-light',
-    outline: 'bg-white',
+      'bg-linear-to-r from-primary to-accent shadow-md shadow-secondary hover:from-secondary hover:to-primary hover:shadow-lg',
+    secondary: 'bg-light/80 hover:bg-light',
+    outline: 'hover:bg-gray-800 border',
   };
 
   const sizeStyles = {
