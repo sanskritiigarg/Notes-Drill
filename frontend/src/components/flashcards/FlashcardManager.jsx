@@ -8,6 +8,7 @@ import Spinner from '../common/Spinner.jsx';
 import Modal from '../common/Modal.jsx';
 import Flashcard from './Flashcard.jsx';
 import Button from '../common/Button.jsx';
+import EmptyState from '../common/EmptyState.jsx';
 
 const FlashcardManager = ({ documentId }) => {
   const [flashcardSets, setFlashcardSets] = useState([]);
@@ -198,28 +199,14 @@ const FlashcardManager = ({ documentId }) => {
 
     if (flashcardSets.length === 0) {
       return (
-        <div className="flex flex-col items-center justify-center py-16 px-6">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-linear-to-br from-accent to-light mb-6">
-            <Brain strokeWidth={2} className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-semibold">No Flashcards yet</h3>
-          <p className="text-md mb-8 text-center max-w-sm">
-            Generate flashcards from your document to start learning and reinforce your knowledge.
-          </p>
-          <Button onClick={handleGenerateFlashcards} disabled={generating} size="md">
-            {generating ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Generating...
-              </>
-            ) : (
-              <>
-                <Sparkles strokeWidth={2} className="w-6 h-6" />
-                Generate Flashcards
-              </>
-            )}
-          </Button>
-        </div>
+        <EmptyState
+          onClickAction={handleGenerateFlashcards}
+          title="No Flashcards yet"
+          description="Generate flashcards from your document to start learning and reinforce your knowledge."
+          buttonText="Generate Flashcards"
+          loading={generating}
+          loadingText="Generating..."
+        />
       );
     }
 

@@ -5,6 +5,7 @@ import Spinner from '../../components/common/Spinner.jsx';
 import documentServices from '../../services/document.service.js';
 import Button from '../../components/common/Button.jsx';
 import DocumentCard from '../../components/documents/DocumentCard.jsx';
+import EmptyState from '../../components/common/EmptyState.jsx';
 
 const DocListPage = () => {
   const [documents, setDocuments] = useState([]);
@@ -23,9 +24,6 @@ const DocListPage = () => {
   const hasFetched = React.useRef(false);
 
   const fetchDocuments = async () => {
-    if (hasFetched.current) return;
-    hasFetched.current = true;
-
     try {
       const fetchedData = await documentServices.getDocuments();
       setDocuments(fetchedData.data);
@@ -38,6 +36,8 @@ const DocListPage = () => {
   };
 
   useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
     fetchDocuments();
   }, []);
 
@@ -103,6 +103,7 @@ const DocListPage = () => {
     setIsUploadModalOpen(false);
     setUploadTitle('');
     setUploadFile(null);
+    fetchDocuments();
   };
 
   const renderUploadDialog = () => {
@@ -223,23 +224,12 @@ const DocListPage = () => {
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center min-h-[400px]">
-            <div className="text-center max-w-md">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-linear-to-r from-secondary to-accent shadow-md">
-                <FileText strokeWidth={1.5} className="w-10 h-10" />
-              </div>
-
-              <h3 className="text-xl font-medium tracking-tight mb-2">No Documents Yet</h3>
-              <p className="text-sm mb-6">
-                Get started by uploading your first PDF document to begin learning
-              </p>
-
-              <Button onClick={() => setIsUploadModalOpen(true)}>
-                <Plus strokeWidth={2.5} className="h-4 w-4" />
-                Upload Document
-              </Button>
-            </div>
-          </div>
+          <EmptyState
+            onClickAction={() => setIsUploadModalOpen(true)}
+            title="No Documents yet"
+            description="Get started by uploading your first PDF document to begin learning"
+            buttonText="Upload Document"
+          />
         )}
 
         {isUploadModalOpen && renderUploadDialog()}
