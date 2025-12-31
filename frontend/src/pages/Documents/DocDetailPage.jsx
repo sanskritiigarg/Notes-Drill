@@ -9,6 +9,7 @@ import Tabs from '../../components/documents/Tabs.jsx';
 import ChatInterface from '../../components/tabs/ChatInterface.jsx';
 import AIActions from '../../components/tabs/AIActions.jsx';
 import FlashcardManager from '../../components/flashcards/FlashcardManager.jsx';
+import QuizManager from '../../components/quizzes/QuizManager.jsx';
 
 function DocDetailPage() {
   const { id } = useParams();
@@ -101,7 +102,7 @@ function DocDetailPage() {
   };
 
   const renderQuizzes = () => {
-    return 'renderQuizzes';
+    return <QuizManager documentId={id} />;
   };
 
   const tabs = [

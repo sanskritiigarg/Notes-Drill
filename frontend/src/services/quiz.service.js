@@ -58,3 +58,5 @@ const quizService = {
   submitQuiz,
   deleteQuiz,
 };
+
+export default quizService;
