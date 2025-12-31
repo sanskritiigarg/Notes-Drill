@@ -13,7 +13,7 @@ const getAllQuizzes = async (documentId) => {
 
 const getQuizById = async (id) => {
   try {
-    const response = await axiosInstance.get(API_PATHS.QUIZ.GET_QUIZ_FOR_DOC(id));
+    const response = await axiosInstance.get(API_PATHS.QUIZ.GET_QUIZ_BY_ID(id));
 
     return response.data;
   } catch (error) {
@@ -23,7 +23,7 @@ const getQuizById = async (id) => {
 
 const submitQuiz = async (id, answers) => {
   try {
-    const response = await axiosInstance.post(API_PATHS.QUIZ.GET_QUIZ_FOR_DOC(id), { answers });
+    const response = await axiosInstance.post(API_PATHS.QUIZ.SUBMIT_QUIZ(id), { answers });
 
     return response.data;
   } catch (error) {
@@ -33,7 +33,7 @@ const submitQuiz = async (id, answers) => {
 
 const getQuizResults = async (id) => {
   try {
-    const response = await axiosInstance.get(API_PATHS.QUIZ.GET_QUIZ_FOR_DOC(id));
+    const response = await axiosInstance.get(API_PATHS.QUIZ.GET_QUIZ_RESULTS(id));
 
     return response.data;
   } catch (error) {
@@ -43,7 +43,7 @@ const getQuizResults = async (id) => {
 
 const deleteQuiz = async (id) => {
   try {
-    const response = await axiosInstance.delete(API_PATHS.QUIZ.GET_QUIZ_FOR_DOC(id));
+    const response = await axiosInstance.delete(API_PATHS.QUIZ.DELETE_QUIZ(id));
 
     return response.data;
   } catch (error) {
