@@ -4,7 +4,7 @@ import Spinner from '../../components/common/Spinner.jsx';
 import toast from 'react-hot-toast';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import documentServices from '../../services/document.service.js';
-import PageHeader from '../../components/documents/PageHeader.jsx';
+import PageHeader from '../../components/common/PageHeader.jsx';
 import Tabs from '../../components/documents/Tabs.jsx';
 import ChatInterface from '../../components/tabs/ChatInterface.jsx';
 import AIActions from '../../components/tabs/AIActions.jsx';
