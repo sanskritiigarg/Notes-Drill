@@ -106,10 +106,10 @@ function QuizTakePage() {
 
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-md font-semibold">
+          <span className="text-base font-semibold">
             Question {currentQuestionIndex + 1} of {quiz.questions.length}
           </span>
-          <span className="text-md font-semibold">{answeredCount} answered</span>
+          <span className="text-base font-semibold">{answeredCount} answered</span>
         </div>
         <div className="relative h-2 rounded-full overflow-hidden">
           <div
@@ -147,7 +147,7 @@ function QuizTakePage() {
                 />
 
                 <span
-                  className={`ml-4 text-md font-medium transition-colors duration-200 ${isSelected ? 'font-semibold text-foreground' : 'text-foreground/80 group-hover:text-foreground'}`}
+                  className={`ml-4 text-base font-medium transition-colors duration-200 ${isSelected ? 'font-semibold text-foreground' : 'text-foreground/80 group-hover:text-foreground'}`}
                 >
                   {option}
                 </span>

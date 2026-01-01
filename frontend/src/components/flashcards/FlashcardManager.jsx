@@ -139,7 +139,7 @@ const FlashcardManager = ({ documentId }) => {
       <div className="space-y-8">
         <button
           onClick={() => setSelectedSet(null)}
-          className="inline-flex items-center gap-2 text-md text-light hover:text-accent transition-colors duration-100"
+          className="inline-flex items-center gap-2 text-base text-light hover:text-accent transition-colors duration-100"
         >
           <ArrowLeft strokeWidth={2} />
           Back to Sets
@@ -216,7 +216,7 @@ const FlashcardManager = ({ documentId }) => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h3 className="text-lg font-semibold">Your Flashcard Sets</h3>
-            <p className="text-md">
+            <p className="text-base">
               {flashcardSets.length} {flashcardSets.length === 1 ? 'set' : 'sets'} available
             </p>
           </div>

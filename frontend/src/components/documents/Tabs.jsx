@@ -9,7 +9,7 @@ const Tabs = ({ tabs, activeTab, setActiveTab }) => {
             <button
               key={tab.name}
               onClick={() => setActiveTab(tab.name)}
-              className={`relative pt-2 pb-4 px-2 md:px-6 text-md font-semibold transition-all duration-100 ${activeTab === tab.name ? 'text-accent' : ''}`}
+              className={`relative pt-2 pb-4 px-2 md:px-6 text-base font-semibold transition-all duration-100 ${activeTab === tab.name ? 'text-accent' : ''}`}
             >
               <span className="relative z-10">{tab.label}</span>
               {activeTab === tab.name && (

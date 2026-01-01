@@ -65,12 +65,12 @@ function DocDetailPage() {
     return (
       <div className="border rounded-lg overflow-hidden shadow-sm">
         <div className="flex items-center justify-between p-4 border-b">
-          <span className="text-md font-medium">Document Viewer</span>
+          <span className="text-base font-medium">Document Viewer</span>
           <a
             href={pdfUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-shadow-md text-blue-300 hover:text-blue-600 font-medium transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 text-base text-blue-300 hover:text-blue-600 font-medium transition-colors duration-200"
           >
             <ExternalLink size={16} />
             Open in new Tab
@@ -146,7 +146,7 @@ function DocDetailPage() {
       <div className="mb-4">
         <Link
           to="/documents"
-          className="inline-flex items-center gap-2 text-md text-light hover:text-accent transition-colors duration-100"
+          className="inline-flex items-center gap-2 text-base text-light hover:text-accent transition-colors duration-100"
         >
           <ArrowLeft size={16} />
           Back to Documents

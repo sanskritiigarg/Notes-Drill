@@ -123,7 +123,7 @@ const QuizManager = ({ documentId }) => {
       >
         <form onSubmit={handleGenerateQuiz} className="space-y-4">
           <div>
-            <label className="block text-md font-medium mb-1.5">Number of Questions</label>
+            <label className="block text-base font-medium mb-1.5">Number of Questions</label>
             <input
               type="number"
               value={numQuestions}
@@ -158,7 +158,7 @@ const QuizManager = ({ documentId }) => {
         <div className="space-y-6">
           <p className="text-sm">
             Are you sure you want to delete the quiz:{' '}
-            <span className="font-semibold text-md">{selectedQuiz?.title || 'this quiz'}</span>
+            <span className="font-semibold text-base">{selectedQuiz?.title || 'this quiz'}</span>
           </p>
           <div className="flex items-center justify-end gap-3 pt-2">
             <button

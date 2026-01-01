@@ -90,7 +90,7 @@ const ChatInterface = () => {
           } `}
         >
           {isUser ? (
-            <p className="text-md leading-relaxed">{msg.content}</p>
+            <p className="text-base leading-relaxed">{msg.content}</p>
           ) : (
             <div className="prose prose-sm max-w-none prose-slate">
               <MarkdownRenderer content={msg.content} />
@@ -113,7 +113,7 @@ const ChatInterface = () => {
           <MessageSquare strokeWidth={2} className="w-6 h-6" />
         </div>
         <Spinner />
-        <p className="text-md mt-3 font-medium">Loading chat History...</p>
+        <p className="text-base mt-3 font-medium">Loading chat History...</p>
       </div>
     );
   }
@@ -127,7 +127,7 @@ const ChatInterface = () => {
               <MessageSquare strokeWidth={2} className="h-6 w-6" />
             </div>
             <h3 className="text-base font-semibold mb-2">Start a conversation</h3>
-            <p className="text-md">Ask me anything about the document</p>
+            <p className="text-base">Ask me anything about the document</p>
           </div>
         ) : (
           history.map(renderMessage)

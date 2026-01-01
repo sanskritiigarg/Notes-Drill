@@ -75,7 +75,7 @@ const AIActions = () => {
                   </div>
                   <h4 className="font-semibold">Generate Summary</h4>
                 </div>
-                <p className="text-md leading-relaxed">
+                <p className="text-base leading-relaxed">
                   Get a concise summary of the entire document.
                 </p>
               </div>
@@ -106,7 +106,7 @@ const AIActions = () => {
                   </div>
                   <h4 className="font-semibold">Explain a Concept</h4>
                 </div>
-                <p className="text-md leading-relaxed mb-2">
+                <p className="text-base leading-relaxed mb-2">
                   Enter a topic from the document to get a detailed explanation.
                 </p>
                 <div className="flex items-center gap-3">

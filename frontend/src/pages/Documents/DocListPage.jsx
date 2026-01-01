@@ -133,7 +133,7 @@ const DocListPage = () => {
                 value={uploadTitle}
                 onChange={(e) => setUploadTitle(e.target.value)}
                 required
-                className="w-full h-12 px-4 border-2 rounded-xl text-md font-medium focus:outline-none focus:border-accent"
+                className="w-full h-12 px-4 border-2 rounded-xl text-base font-medium focus:outline-none focus:border-accent"
                 placeholder="e.g., React Interview Prep"
               />
             </div>

@@ -9,7 +9,7 @@ const EmptyState = ({ onClickAction, title, description, buttonText, loading, lo
         <FileText strokeWidth={2} className="w-8 h-8" />
       </div>
       <h3 className="text-xl font-semibold">{title}</h3>
-      <p className="text-md mb-8 text-center max-w-sm">{description}</p>
+      <p className="text-base mb-8 text-center max-w-sm">{description}</p>
       <Button onClick={onClickAction} disabled={loading} size="md">
         {loading ? (
           <>

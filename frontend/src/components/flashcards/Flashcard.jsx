@@ -96,7 +96,9 @@ const Flashcard = ({ flashcard, onToggleStar }) => {
 
           {/* Answer Content */}
           <div lassName="flex-1 flex items-center justify-center px-4 py-6">
-            <p className="text-md font-semibold text-center leading-relaxed">{flashcard.answer}</p>
+            <p className="text-base font-semibold text-center leading-relaxed">
+              {flashcard.answer}
+            </p>
           </div>
 
           {/* Flip Indicator */}

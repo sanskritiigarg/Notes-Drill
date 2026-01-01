@@ -12,7 +12,7 @@ const MarkdownRenderer = ({ content }) => {
         components={{
           h1: ({ node, ...props }) => <h1 className="text-xl font-bold mt-4 mb-2" {...props} />,
           h2: ({ node, ...props }) => <h2 className="text-lg font-bold mt-4 mb-2" {...props} />,
-          h3: ({ node, ...props }) => <h3 className="text-md font-bold mt-3 mb-2" {...props} />,
+          h3: ({ node, ...props }) => <h3 className="text-base font-bold mt-3 mb-2" {...props} />,
           h4: ({ node, ...props }) => <h4 className="text-sm font-bold mt-3 mb-1" {...props} />,
           p: ({ node, ...props }) => <p className="mb-2 leading-relaxed" {...props} />,
           a: ({ node, ...props }) => <a className="text-secondary hover:underline" {...props} />,
@@ -33,14 +33,14 @@ const MarkdownRenderer = ({ content }) => {
                 {String(children).replace(/\n$/, '')}
               </SyntaxHighlighter>
             ) : (
-              <code className="bg-black p-1 rounded font-mono text-md" {...props}>
+              <code className="bg-black p-1 rounded font-mono text-base" {...props}>
                 {children}
               </code>
             );
           },
           pre: ({ node, ...props }) => (
             <pre
-              className="bg-black p-3 rounded-md overflow-x-auto font-mono text-md my-4"
+              className="bg-black p-3 rounded-md overflow-x-auto font-mono text-base my-4"
               {...props}
             />
           ),

@@ -51,7 +51,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             <div className="flex items-center justify-center w-9 h-9 rounded-xl shadow-md bg-accent">
               <BookOpen className="w-6 h-6 text-foreground" />
             </div>
-            <h1 className="text-md md:text-base font-bold tracking-tight">Notes Drill</h1>
+            <h1 className="text-base md:text-base font-bold tracking-tight">Notes Drill</h1>
           </div>
           <button onClick={toggleSidebar} className="md:hidden">
             <X size={24} />

@@ -39,7 +39,7 @@ const DashboardPage = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl ">
             <TrendingUp className="w-8 h-8 " />
           </div>
-          <p className="text-md">No dashboard data available</p>
+          <p className="text-base">No dashboard data available</p>
         </div>
       </div>
     );
@@ -74,7 +74,7 @@ const DashboardPage = () => {
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-3xl font-medium mb-2">Dashboard</h1>
-          <p className="text-md">Track your learning progress</p>
+          <p className="text-base">Track your learning progress</p>
         </div>
       </div>
 
