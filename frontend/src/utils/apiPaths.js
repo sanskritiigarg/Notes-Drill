@@ -13,6 +13,7 @@ export const API_PATHS = {
   FLASHCARDS: {
     GET_ALL_FOR_USER: '/api/flashcards',
     GET_ALL_FOR_DOC: (documentId) => `/api/flashcards/${documentId}`,
+    GET_BY_ID: (id) => `/api/flashcards/flashcard/${id}`,
     REVIEW_FLASHCARD: (cardId) => `/api/flashcards/${cardId}/review`,
     STAR_FLASHCARD: (cardId) => `/api/flashcards/${cardId}/star`,
     DELETE: (id) => `/api/flashcards/${id}`,
