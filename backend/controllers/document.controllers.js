@@ -193,6 +193,8 @@ const deleteDocument = async (req, res, next) => {
 
     // Delete file from database
     await document.deleteOne();
+    await Flashcard.deleteMany({ documentId: document._id });
+    await Quiz.deleteMany({ documentId: document._id });
 
     return res.status(200).json({
       success: true,
