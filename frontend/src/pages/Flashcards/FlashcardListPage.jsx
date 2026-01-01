@@ -29,8 +29,6 @@ function FlashcardListPage() {
     fetchFlashcardsSets();
   }, []);
 
-  const handleGenerateFlashcards = () => {};
-
   const renderContent = () => {
     if (loading) {
       return <Spinner />;
@@ -39,11 +37,8 @@ function FlashcardListPage() {
     if (flashcardSets.length === 0) {
       return (
         <EmptyState
-          onClickAction={handleGenerateFlashcards}
           title="No Flashcards yet"
           description="Generate flashcards from your document to start learning and reinforce your knowledge."
-          buttonText="Generate Flashcards"
-          loadingText="Generating..."
         />
       );
     }

@@ -4,6 +4,7 @@ import {
   deleteFlashcardSet,
   getAllFlashcards,
   getFlashcards,
+  getFlashcardById,
   reviewFlashcards,
   toggleStarFlashcards,
 } from '../controllers/flashcard.controllers.js';
@@ -16,6 +17,10 @@ router.use(protect);
 // @desc Get all Flashcards for a user
 // @route GET /api/flashcards
 router.get('/', getAllFlashcards);
+
+// @desc Get flashcard by id
+// @route GET /api/flashcards/flashcard/:id
+router.get('/flashcard/:id', getFlashcardById);
 
 // @desc Get all flashcards of a document
 // @route GET /api/flashcards/:documentId

@@ -39,6 +39,23 @@ const getAllFlashcards = async (req, res, next) => {
   }
 };
 
+const getFlashcardById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const flashcard = await Flashcard.findById(id)
+      .populate('documentId', 'title fileName')
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      statusCode: 200,
+      data: flashcard,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const reviewFlashcards = async (req, res, next) => {
   try {
     const flashcardSet = await Flashcard.findOne({
@@ -151,6 +168,7 @@ const deleteFlashcardSet = async (req, res, next) => {
 export {
   getFlashcards,
   getAllFlashcards,
+  getFlashcardById,
   reviewFlashcards,
   toggleStarFlashcards,
   deleteFlashcardSet,

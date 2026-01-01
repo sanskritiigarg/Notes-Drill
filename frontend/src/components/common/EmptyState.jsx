@@ -10,19 +10,21 @@ const EmptyState = ({ onClickAction, title, description, buttonText, loading, lo
       </div>
       <h3 className="text-xl font-semibold">{title}</h3>
       <p className="text-base mb-8 text-center max-w-sm">{description}</p>
-      <Button onClick={onClickAction} disabled={loading} size="md">
-        {loading ? (
-          <>
-            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-            {loadingText}
-          </>
-        ) : (
-          <>
-            <Plus strokeWidth={2} className="w-6 h-6" />
-            {buttonText}
-          </>
-        )}
-      </Button>
+      {onClickAction && (
+        <Button onClick={onClickAction} disabled={loading} size="md">
+          {loading ? (
+            <>
+              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              {loadingText}
+            </>
+          ) : (
+            <>
+              <Plus strokeWidth={2} className="w-6 h-6" />
+              {buttonText}
+            </>
+          )}
+        </Button>
+      )}
     </div>
   );
 };

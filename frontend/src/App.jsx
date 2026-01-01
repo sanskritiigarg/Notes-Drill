@@ -52,7 +52,7 @@ function App() {
           <Route path="/documents" element={<DocumentListPage />} />
           <Route path="/documents/:id" element={<DocumentDetailPage />} />
           <Route path="/flashcards" element={<FlashcardsListPage />} />
-          <Route path="/documents/:id/flashcards" element={<FlashcardPage />} />
+          <Route path="/flashcards/:id" element={<FlashcardPage />} />
           <Route path="/quizzes/:quizId" element={<QuizTakePage />} />
           <Route path="/quizzes/:quizId/result" element={<QuizResultPage />} />
           <Route path="/profile" element={<ProfilePage />} />
