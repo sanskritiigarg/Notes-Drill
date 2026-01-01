@@ -5,6 +5,7 @@ import PageHeader from '../../components/common/PageHeader';
 import Spinner from '../../components/common/Spinner';
 import toast from 'react-hot-toast';
 import { ArrowLeft, CheckCircle2, XCircle, Trophy, Target, BookOpen } from 'lucide-react';
+import Button from '../../components/common/Button';
 
 function QuizResultPage() {
   const { quizId } = useParams();
@@ -219,6 +220,15 @@ function QuizResultPage() {
             </div>
           );
         })}
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <Link to={`/documents/${quiz.document._id}`}>
+          <Button>
+            <ArrowLeft strokeWidth={2} className="w-4 h-4" />
+            Return to Document
+          </Button>
+        </Link>
       </div>
     </div>
   );
