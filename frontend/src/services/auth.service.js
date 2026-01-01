@@ -50,11 +50,11 @@ const updateProfile = async (userData) => {
 
 const updatePassword = async (passwords) => {
   try {
-    const response = await axiosInstance.delete(API_PATHS.AUTH.UPDATE_PASSWORD, passwords);
+    const response = await axiosInstance.put(API_PATHS.AUTH.UPDATE_PASSWORD, passwords);
 
     return response.data;
   } catch (error) {
-    throw error.response?.data || { message: 'An unknown error occurred' };
+    throw error.data || { message: 'An unknown error occurred' };
   }
 };
 
