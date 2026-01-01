@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FileText, Trash2, BookOpen, Clock, Dock, BrainCircuit } from 'lucide-react';
 import moment from 'moment';
-import { doc } from 'prettier';
 
 const formatFilesize = (bytes) => {
   if (bytes === undefined || bytes === null) return 'N/A';
