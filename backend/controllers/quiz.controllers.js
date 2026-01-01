@@ -171,7 +171,7 @@ const getQuizResults = async (req, res, next) => {
       data: {
         quiz: {
           id: quiz._id,
-          title: quiz.documentId,
+          document: quiz.documentId,
           title: quiz.title,
           score: quiz.score,
           totalQuestions: quiz.totalQuestions,
