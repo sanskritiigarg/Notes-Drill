@@ -141,6 +141,7 @@ const DashboardPage = () => {
                       />
                       <p className="text-sm font-medium truncate">
                         Accessed {activity.type === 'document' ? 'Document' : 'Quiz'}
+                        {': '}
                         <span>{activity.description}</span>
                       </p>
                     </div>

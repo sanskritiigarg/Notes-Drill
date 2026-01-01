@@ -43,7 +43,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       ></div>
 
       <aside
-        className={`fixed top-0 left-0 h-full w-64 backdrop-blur-xl border-r border-primary shadow-sm shadow-secondary z-50 md:relative md:w-64 md:shrink-0 md:flex md:flex-col md:translate-x-0 transition-transform duration-200 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-0 left-0 h-full w-64 backdrop-blur-3xl border-r border-primary shadow-sm shadow-secondary z-50 md:relative md:w-64 md:shrink-0 md:flex md:flex-col md:translate-x-0 transition-transform duration-200 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         {/* Logo and Close button for mobile */}
         <div className="flex items-center justify-between h-16 px-2 border-b border-primary shadow-xs shadow-secondary">

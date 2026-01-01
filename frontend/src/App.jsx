@@ -37,8 +37,14 @@ function App() {
             )
           }
         />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/login"
+          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />}
+        />
+        <Route
+          path="/register"
+          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <RegisterPage />}
+        />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
