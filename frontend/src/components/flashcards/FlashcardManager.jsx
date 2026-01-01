@@ -1,14 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Plus, ChevronLeft, ChevronRight, Trash2, ArrowLeft, Sparkles, Brain } from 'lucide-react';
+import { Trash2, ArrowLeft, Sparkles, Brain } from 'lucide-react';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 import flashcardServices from '../../services/flashcards.service.js';
 import aiServices from '../../services/ai.service.js';
 import Spinner from '../common/Spinner.jsx';
 import Modal from '../common/Modal.jsx';
-import Flashcard from './Flashcard.jsx';
+
 import Button from '../common/Button.jsx';
 import EmptyState from '../common/EmptyState.jsx';
+import FlashcardViewer from './FlashcardViewer.jsx';
 
 const FlashcardManager = ({ documentId }) => {
   const [flashcardSets, setFlashcardSets] = useState([]);
@@ -57,31 +58,25 @@ const FlashcardManager = ({ documentId }) => {
     }
   };
 
-  const handleNextCard = () => {
-    if (selectedSet) {
-      handleReview(currentCardIndex);
-      setCurrentCardIndex((prevIndex) => (prevIndex + 1) % selectedSet.cards.length);
-    }
+  const handleDeleteRequest = async (e, set) => {
+    e.stopPropagation();
+    setSetToDelete(set);
+    setIsDeleteModalOpen(true);
   };
 
-  const handlePrevCard = () => {
-    if (selectedSet) {
-      handleReview(currentCardIndex);
-      setCurrentCardIndex(
-        (prevIndex) => (prevIndex - 1 + selectedSet.cards.length) % selectedSet.cards.length
-      );
-    }
-  };
-
-  const handleReview = async (index) => {
-    const currCard = selectedSet?.cards[currentCardIndex];
-    if (!currCard) return;
-
+  const handleConfirmDelete = async () => {
+    if (!setToDelete) return;
+    setDeleting(true);
     try {
-      await flashcardServices.reviewFlashcard(currCard._id);
-      toast.success('Flashcard reviewed');
+      await flashcardServices.deleteFlashcard(setToDelete._id);
+      toast.success('Flashcard set deleted successfully');
+      setIsDeleteModalOpen(false);
+      setSetToDelete(null);
+      fetchFlashcardsSets();
     } catch (error) {
-      toast.error('Failed to review flashcard.');
+      toast.error(error.message || 'Failed to delete flashcard set.');
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -105,36 +100,12 @@ const FlashcardManager = ({ documentId }) => {
     }
   };
 
-  const handleDeleteRequest = async (e, set) => {
-    e.stopPropagation();
-    setSetToDelete(set);
-    setIsDeleteModalOpen(true);
-  };
-
-  const handleConfirmDelete = async () => {
-    if (!setToDelete) return;
-    setDeleting(true);
-    try {
-      await flashcardServices.deleteFlashcard(setToDelete._id);
-      toast.success('Flashcard set deleted successfully');
-      setIsDeleteModalOpen(false);
-      setSetToDelete(null);
-      fetchFlashcardsSets();
-    } catch (error) {
-      toast.error(error.message || 'Failed to delete flashcard set.');
-    } finally {
-      setDeleting(false);
-    }
-  };
-
   const handleSelectSet = (set) => {
     setSelectedSet(set);
     setCurrentCardIndex(0);
   };
 
   const renderFlashcardViewer = () => {
-    const currentCard = selectedSet.cards[currentCardIndex];
-
     return (
       <div className="space-y-8">
         <button
@@ -146,44 +117,12 @@ const FlashcardManager = ({ documentId }) => {
         </button>
 
         {/* Flashcard Display */}
-        <div className="flex flex-col items-center space-y-8">
-          <div className="w-full max-w-2xl">
-            <Flashcard flashcard={currentCard} onToggleStar={handleToggleStar} />
-          </div>
-
-          {/* Navigation Controls */}
-          <div className="flex items-center gap-6">
-            <button
-              onClick={handlePrevCard}
-              disabled={selectedSet.cards.length <= 1}
-              className="group flex items-center gap-2 px-4 h-11 font-medium text-sm rounded-xl bg-accent/40 hover:bg-accent/80 transition-all duration-150 disabled:bg-accent/20 disabled:cursor-not-allowed"
-            >
-              <ChevronLeft
-                strokeWidth={2}
-                className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-150"
-              />
-              Previous
-            </button>
-
-            <div className="border py-2 px-4 rounded-lg border-foreground/70 bg-gray-800">
-              <span>
-                {currentCardIndex + 1} <span>/</span> {selectedSet.cards.length}
-              </span>
-            </div>
-
-            <button
-              onClick={handleNextCard}
-              disabled={selectedSet.cards.length <= 1}
-              className="group flex items-center gap-2 px-5 h-11 font-medium text-sm rounded-xl bg-accent/40 hover:bg-accent/80 transition-all duration-150 disabled:bg-accent/20 disabled:cursor-not-allowed"
-            >
-              Next
-              <ChevronRight
-                strokeWidth={2}
-                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-150"
-              />
-            </button>
-          </div>
-        </div>
+        <FlashcardViewer
+          selectedSet={selectedSet}
+          currentCardIndex={currentCardIndex}
+          setCurrentCardIndex={setCurrentCardIndex}
+          handleToggleStar={handleToggleStar}
+        />
       </div>
     );
   };
