@@ -50,7 +50,6 @@ function FlashcardPage() {
     return <Spinner />;
   }
 
-
   return (
     <div>
       <FlashcardViewer
