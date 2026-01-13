@@ -6,6 +6,10 @@ Unlike generic AI note tools, all outputs in Notes Drill are strictly constraine
 
 This project was built to explore production-style AI integration.
 
+**Live link:** https://notes-drill.vercel.app/  
+The backend is hosted on Render’s free tier, so the server may take 30–60 seconds to wake up.
+If the site doesn’t load immediately, wait a moment and refresh.
+
 ---
 
 ## Core Features
@@ -207,6 +211,39 @@ This project was built to explore production-style AI integration.
     └── server.js
 └── package.json
 ```
+
+---
+
+## Screenshots
+
+Dashboard Page
+![Dashboard Page](screenshots/DashboardPage.png)
+
+Documents Page
+![Documents Page](screenshots/DocumentsPage.png)
+
+Flashcard Page
+![Flashcard Page](screenshots/FlashcardsPage.png)
+
+Profile Page
+![Profile Page](screenshots/ProfilePage.png)
+
+Document Details Page
+![Document Details Page](screenshots/DocumentDetails.png)
+
+AI Chat Page
+![AI Chat Page](screenshots/AIChat.png)
+
+AI Actions Page
+![AI Actions Page](screenshots/AIActions.png)
+
+Flashcard View
+![Flashcard View](screenshots/Flashcard.png)
+
+Quiz Take Page
+![Quiz Take Page](screenshots/Quiz.png)
+
+---
 
 ## License
 
