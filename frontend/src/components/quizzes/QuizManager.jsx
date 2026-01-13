@@ -82,7 +82,7 @@ const QuizManager = ({ documentId }) => {
       return (
         <div className="bg-gray-900 backdrop-blur-lg border rounded-3xl shadow-lg shadow-primary p-8">
           <EmptyState
-            onClickAction={handleGenerateQuiz}
+            onClickAction={() => setIsGenerateModalOpen(true)}
             title="No Quizzes yet"
             description="Generate flashcards from your document to start learning and reinforce your knowledge."
             buttonText="Generate Quizzes"
